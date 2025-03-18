@@ -124,13 +124,13 @@ export default function Home() {
                   WHO IS GTRC FOR?
                 </h3>
                 <p className="text-muted-foreground mb-3">
-                  Initially We Looked At Joining Other Local Runninc Clubs, But At The Time What Was On Offer Felt Too Advanced For Our Abilities. The Foundation Of Good Time Is That The Club Is Available For Everyone. If You've Never Ran But Want To Give It A Try, We're Here For You. At Most Runs We Find Ourselves Having A Run/Walk Chat With A New Friend. Time And Time Again We Get Asked What Our Club Demographic Is, Honestly There Isnt One. We Are Such A Mismatched Group Of People, But Maybe That's Why It Works? Who Knows.
+                  Initially We Looked At Joining Other Local Runninc Clubs, But At The Time What Was On Offer Felt Too Advanced For Our Abilities. The Foundation Of Good Time Is That The Club Is Available For Everyone. If You`&apos;`ve Never Ran But Want To Give It A Try, We`&apos;`re Here For You. At Most Runs We Find Ourselves Having A Run/Walk Chat With A New Friend. Time And Time Again We Get Asked What Our Club Demographic Is, Honestly There Isnt One. We Are Such A Mismatched Group Of People, But Maybe That`&apos;`s Why It Works? Who Knows.
                 </p>
                 <h3 className="text-xl font-bold tracking-tight sm:text-2xl mb-1">
-                  WHAT'S THE DEAL?
+                  WHAT`&apos;`S THE DEAL?
                 </h3>
                 <p className="text-muted-foreground mb-6">
-                  We Meet Every Monday, Thursday And Sunday In The City, Mondays And Sundays In Portobello And Thursday In Leith. All Of Our Regular Runs Are Free And You Don't Need To Let Us Know If You Are Coming In Advance. 
+                  We Meet Every Monday, Thursday And Sunday In The City, Mondays And Sundays In Portobello And Thursday In Leith. All Of Our Regular Runs Are Free And You Don`&apos;`t Need To Let Us Know If You Are Coming In Advance. 
                 </p>
               </div>
               <div className="relative h-[400px] rounded-lg overflow-hidden">
@@ -408,7 +408,7 @@ export default function Home() {
                     <span className="text-sm">Downtown</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    The biggest event of our year! Join our club team for the city's annual marathon.
+                    The biggest event of our year! Join our club team for the city`&apos;`s annual marathon.
                   </p>
                 </CardContent>
               </Card>
