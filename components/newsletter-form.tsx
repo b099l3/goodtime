@@ -48,7 +48,7 @@ export default function NewsletterForm() {
   }
 
   return (
-    <form className="space-y-2" onSubmit={handleSubmit}>
+    <form className="space-y-4" onSubmit={handleSubmit}>
       <Input
         type="email"
         placeholder="Your email"

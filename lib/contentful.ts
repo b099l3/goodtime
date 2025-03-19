@@ -73,6 +73,30 @@ export async function getAllEvents() {
   }
 }
 
+// Fetch all events from Contentful
+export async function getAllEventsThisYear() {
+  try {
+    const today = new Date();
+    const yearStart = new Date(today.getFullYear(), 0, 1).toISOString(); // January 1st of this year
+    const yearEnd = new Date(today.getFullYear()+1, today.getMonth(), today.getDay(), 23, 59, 59).toISOString(); // December 31st of this year
+    const todayISOString = today.toISOString(); // Today’s date in ISO format
+
+    const response = await contentfulClient.getEntries({
+      content_type: "eventEntry", // Your Contentful content type ID
+      order: ["fields.date"], // Order by event date (ascending)
+      limit: 100,
+      include: 2,
+      "fields.date[gte]": todayISOString, // Only events from today onwards
+      "fields.date[lte]": yearEnd, // Only events before the end of this year
+    });
+
+    return response.items as unknown as EventEntry[] || []
+  } catch (error) {
+    console.error("Error fetching events from Contentful:", error)
+    return [];
+  }
+}
+
 // Fetch a single event by slug
 export async function getEventBySlug(slug: string): Promise<EventEntry | null> {
   try {

@@ -1,8 +1,10 @@
 import NewsletterForm from "@/components/newsletter-form"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import MobileMenu from "@/components/ui/mobile-menu"
+import Footer from "@/components/ui/footer"
+import Header from "@/components/ui/header"
 import { ContentfulImage, getUpcomingEvents } from "@/lib/contentful"
+import { formatDate } from "@/lib/utils"
 import { Calendar, Clock, MapPin } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -15,34 +17,7 @@ export default async function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-background p-3">
-        <div className="container mx-auto flex h-8 items-center justify-between pl-2">
-          <div className="flex items-center gap-2">
-          <Image
-              src="/logo-dark.svg?height=180&width=100"
-              alt="Runners in action"
-              width={100}
-              height={80}
-              priority
-            />
-          </div>
-          <nav className="hidden md:flex gap-6">
-            <Link href="#about" className="text-sm font-medium transition-colors hover:text-primary">
-              About
-            </Link>
-            <Link href="#runs" className="text-sm font-medium transition-colors hover:text-primary">
-              Regular Runs
-            </Link>
-            <Link href="#events" className="text-sm font-medium transition-colors hover:text-primary">
-              Events
-            </Link>
-            <Link href="#contact" className="text-sm font-medium transition-colors hover:text-primary">
-              Contact
-            </Link>
-          </nav>
-          <MobileMenu />
-          </div>
-      </header>
+      <Header/>
 
       <main className="flex-1">
         {/* Hero Section */}
@@ -111,7 +86,7 @@ export default async function Home() {
                 Join us for our regular runs, We don’t run at any set pace, and you’ll always have someone to run with.
               </p>
             </div>
-            <div className="grid gap-8 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
               {/* Monday Run */}
               <Card>
                 <CardHeader>
@@ -289,8 +264,7 @@ export default async function Home() {
                         )}
                         <div className="flex items-center gap-2 mb-2">
                           <Calendar className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-sm">{new Date(event.fields.date).toLocaleDateString()}</span>
-                          <span className="text-sm">{new Date(event.fields.date).toLocaleTimeString()}</span>
+                          <span className="text-sm">{formatDate(event.fields.date)}</span>
                         </div>
                         <div className="flex items-center gap-2 mb-4">
                           <MapPin className="h-4 w-4 text-muted-foreground" />
@@ -345,27 +319,7 @@ export default async function Home() {
       </main>
 
       {/* Footer */}
-      <footer id="contact" className="border-t px-2 bg-muted/50">
-      <div className="container mx-auto pb-12 p-6">
-        <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
-          <Link href="https://www.facebook.com/profile.php?id=61555882064629" className="text-primary hover:text-primary">
-            <h3 className="font-extrabold text-xl">FACEBOOK</h3>
-          </Link>
-          <Link href="https://www.instagram.com/goodtimerunning" className="text-primary hover:text-primary">
-            <h3 className="font-extrabold text-xl">INSTAGRAM</h3>
-          </Link>
-          <Link href="https://x.com/goodtimerunnin" className="text-primary hover:text-primary">
-            <h3 className="font-extrabold text-xl">TWITTER</h3>
-          </Link>
-          <Link href="https://www.strava.com/clubs/GoodTimeRunnin" className="text-primary hover:text-primary">
-            <h3 className="font-extrabold text-xl">STRAVA</h3>
-          </Link>
-          <Link href="mailto:info@goodtimerunning.com" className="text-primary hover:text-primary">
-            <h3 className="font-extrabold text-xl">EMAIL US</h3>
-          </Link>
-        </div>
-      </div>
-      </footer>
+      <Footer/>
     </div>
   )
 }

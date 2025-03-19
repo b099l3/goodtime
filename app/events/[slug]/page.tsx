@@ -1,6 +1,7 @@
 import AddToCalendar from "@/components/add-to-calendar"
 import { Button } from "@/components/ui/button"
 import { getAllEvents, getEventBySlug } from "@/lib/contentful"
+import { formatDate } from "@/lib/utils"
 import { ArrowLeft, Calendar, MapPin } from "lucide-react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -53,22 +54,7 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
           <div className="flex flex-wrap gap-4 text-primary-foreground/90">
             <div className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
-              <span className="text-sm">
-                {new Date(event.fields.date).toLocaleDateString("en-GB", {
-                  weekday: "long",
-                  month: "numeric",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </span>
-              <span className="text-sm">
-                {new Date(event.fields.date).toLocaleTimeString("en-GB", {
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                  
-                })}
-              </span>
+              <span className="text-sm">{formatDate(event.fields.date)}</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="h-5 w-5" />

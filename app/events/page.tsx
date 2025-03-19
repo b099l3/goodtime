@@ -1,5 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ContentfulImage, getAllEvents } from "@/lib/contentful"
+import Footer from "@/components/ui/footer"
+import Header from "@/components/ui/header"
+import { ContentfulImage, getAllEventsThisYear } from "@/lib/contentful"
+import { formatDate } from "@/lib/utils"
 import { Calendar, MapPin } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -7,7 +10,7 @@ import Link from "next/link"
 export const revalidate = 3600 // Revalidate every hour
 
 export default async function EventsPage() {
-  const events = await getAllEvents()
+  const events = await getAllEventsThisYear()
 
   // Group events by month and year
   const eventsByMonth: Record<string, typeof events> = {}
@@ -25,18 +28,16 @@ export default async function EventsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-primary text-primary-foreground py-16">
+
+           <Header/>
+      <header className="bg-primary text-primary-foreground p-14">
         <div className="container">
-          <h1 className="text-4xl font-bold mb-4">Events Calendar</h1>
+          <h1 className="text-4xl font-extrabold mb-2">Events Calendar</h1>
           <p className="text-xl opacity-90">Join us for upcoming runs, races, workshops, and social events</p>
         </div>
       </header>
 
-      <div className="container py-12">
-        <Link href="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-8">
-          ← Back to home
-        </Link>
-
+      <div className="container px-4 py-8">
         {Object.keys(eventsByMonth).length > 0 ? (
           Object.entries(eventsByMonth).map(([monthYear, monthEvents]) => (
             <div key={monthYear} className="mb-12">
@@ -65,21 +66,7 @@ export default async function EventsPage() {
                         )}
                         <div className="flex items-center gap-2 mb-2">
                           <Calendar className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-sm">
-                            {new Date(event.fields.date).toLocaleDateString("en-GB", {
-                              weekday: "long",
-                              month: "numeric",
-                              day: "numeric",
-                              year: "numeric",
-                            })}
-                          </span>
-                          <span className="text-sm">
-                            {new Date(event.fields.date).toLocaleTimeString("en-GB", {
-                              hour: "numeric",
-                              minute: "numeric",
-                              hour12: true,
-                            })}
-                          </span>
+                          <span className="text-sm">{formatDate(event.fields.date)}</span>
                         </div>
                         <div className="flex items-center gap-2 mb-4">
                           <MapPin className="h-4 w-4 text-muted-foreground" />
@@ -102,6 +89,7 @@ export default async function EventsPage() {
           </div>
         )}
       </div>
+      <Footer/>
     </div>
   )
 }
