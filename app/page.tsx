@@ -1,5 +1,6 @@
 "use client"
 
+import NewsletterForm from "@/components/newsletter-form"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Calendar, Clock, Facebook, Instagram, MapPin, Twitter } from "lucide-react"
@@ -437,20 +438,8 @@ export default function Home() {
               Subscribe to our newsletter for the latest updates and events.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <div>
-              <form className="space-y-2">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="rounded-md border border-input bg-background px-3 py-2 text-sm mx-2"
-                  required
-                />
-                <Button size="lg" variant="secondary" type="submit">
-                  Subscribe
-                </Button>
-              </form>
+              <NewsletterForm/>
             </div>
-              </div>
             </div>
           </div>
         </section>
