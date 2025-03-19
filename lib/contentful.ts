@@ -32,13 +32,9 @@ export type EventEntry = {
 }
 
 // Initialize Contentful client
-const isDev = process.env.IS_DEV === "dev";
 export const contentfulClient = createClient({
   space: process.env.CONTENTFUL_SPACE_ID || "",
-  accessToken: process.env.DEV
-    ? process.env.CONTENTFUL_PREVIEW_TOKEN || ""
-    : process.env.CONTENTFUL_DELIVERY_TOKEN || "",
-  // host: isDev ? "preview.contentful.com" : "cdn.contentful.com",
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || "",
 })
 
 // Fetch upcoming events from Contentful
@@ -61,7 +57,7 @@ export async function getUpcomingEvents(limit = 6): Promise<EventEntry[]> {
 }
 
 // Fetch all events from Contentful
-export async function getAllEvents(): Promise<EventEntry[]> {
+export async function getAllEvents() {
   try {
     const response = await contentfulClient.getEntries({
       content_type: "eventEntry", // Use your actual content type ID here
@@ -70,10 +66,10 @@ export async function getAllEvents(): Promise<EventEntry[]> {
       include: 2,
     })
 
-    return response.items as unknown as EventEntry[]
+    return response.items as unknown as EventEntry[] || []
   } catch (error) {
     console.error("Error fetching events from Contentful:", error)
-    return []
+    return [];
   }
 }
 

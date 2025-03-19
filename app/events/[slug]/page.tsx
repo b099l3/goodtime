@@ -17,8 +17,8 @@ export async function generateStaticParams() {
 }
 
 export default async function EventPage({ params }: { params: { slug: string } }) {
-  const { slug } = await params
-  const event = await getEventBySlug(slug)
+  const { slug } = params;
+  const event = await getEventBySlug(slug);
 
   if (!event) {
     notFound()
