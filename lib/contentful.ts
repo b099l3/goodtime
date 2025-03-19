@@ -34,7 +34,7 @@ export type EventEntry = {
 // Initialize Contentful client
 export const contentfulClient = createClient({
   space: process.env.CONTENTFUL_SPACE_ID || "",
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || "",
+  accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN || "",
 })
 
 // Fetch upcoming events from Contentful
