@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import MobileMenu from "@/components/ui/mobile-menu"
 import { ContentfulImage, getUpcomingEvents } from "@/lib/contentful"
-import { Calendar, Clock, Facebook, Instagram, MapPin, Twitter } from "lucide-react"
+import { Calendar, Clock, MapPin } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -16,7 +16,7 @@ export default async function Home() {
     <div className="flex min-h-screen flex-col">
       {/* Header */}
       <header className="sticky top-0 z-40 bg-background p-3">
-        <div className="container mx-auto flex h-8 items-center justify-between py-2">
+        <div className="container mx-auto flex h-8 items-center justify-between pl-2">
           <div className="flex items-center gap-2">
           <Image
               src="/logo-dark.svg?height=180&width=100"
@@ -48,21 +48,19 @@ export default async function Home() {
         {/* Hero Section */}
         <section className="relative">
           <div className="h-[100vh] w-full relative">
-            <Image
-              src="/background.png?height=800&width=1600"
+            
+            <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/60" />
+            <div className="container mx-auto absolute inset-0 flex flex-col items-center justify-center text-center text-white">
+            <div className="h-[25vw] w-[80vw] relative m-6">
+          <Image
+              src="/logo-light.svg"
               alt="Runners in action"
               fill
-              className="object-cover brightness-80"
               priority
             />
-            <div className="absolute inset-0 bg-primary/70" />
-            <div className="container mx-auto absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">Good Time Running Club</h1>
-              <p className="mt-6 max-w-md text-lg">
-                Edinburgh based running group.
-              </p>
-              <p className="max-w-md text-lg">
-                All inclusive, all abilities, all good.
+          </div>
+              <p className="max-w-2xl text-xs sm:text-xl md:text-2xl lg:text-3xl font-bold">
+                ALL INCLUSIVE. ALL ABILITIES. ALL GOOD.
               </p>
             </div>
           </div>
@@ -110,7 +108,7 @@ export default async function Home() {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Our Regular Runs</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Join us for our regular weekly runs, We don’t run at any set pace, and you’ll always have someone to run with.
+                Join us for our regular runs, We don’t run at any set pace, and you’ll always have someone to run with.
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-3">
@@ -136,7 +134,7 @@ export default async function Home() {
                     </a>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">Mondays, 6:30 pm</span>
+                      <span className="text-sm">Mondays, 6:30 PM</span>
                     </div>
                     
                     <p className="text-sm text-muted-foreground mt-2">
@@ -168,11 +166,11 @@ export default async function Home() {
                     </a>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">Trail - Thursdays, 6:15 pm</span>
+                      <span className="text-sm">Trail - Thursdays, 6:15 PM</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">Road - Thursdays, 6:30 pm</span>
+                      <span className="text-sm">Road - Thursdays, 6:30 PM</span>
                     </div>
                     <p className="text-sm text-muted-foreground mt-2">
                       We have two options for you. A 5km trail run around Holyrood or road run around Leith. Both runs start and finish at the pub, We usually head in for some food/drink and chat afterwards.
@@ -203,19 +201,52 @@ export default async function Home() {
                     </a>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">15km - Saturdays, 10:00 am</span>
+                      <span className="text-sm">15km - Saturdays, 10:00 AM</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">10km - Saturdays, 10:30 am</span>
+                      <span className="text-sm">10km - Saturdays, 10:30 AM</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">5km - Saturdays, 11:00 am</span>
+                      <span className="text-sm">5km - Saturdays, 11:00 AM</span>
                     </div>
                     <p className="text-sm text-muted-foreground mt-2">
                       On Sunday Mornings we meet on the Portobello Prom outside Crumbs for one of three runs. Each week we offer a 5km, 10km and a 15km run.
                       Hang out afterwards for chat and refreshments from Crumbs.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+
+              {/* EOTM Run */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>End of the Month run</CardTitle>
+                  <CardDescription>The 5km where it all started</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="relative h-48 mb-4 rounded-md overflow-hidden">
+                    <Image
+                      src="/run-ptap.jpeg?height=400&width=600"
+                      alt="Trail running"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <a className="flex items-center gap-2" href="https://g.co/kgs/37xpKct">
+                      <MapPin className="h-4 w-4 text-muted-foreground" />
+                      <span className="text-sm">Portobello Tap</span>
+                    </a>
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-muted-foreground" />
+                      <span className="text-sm">Last Friday on the month, 6:30 PM</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      On the last Friday of the month, we meet at the Portobello Tap for a 5km run.
+                      Hang out afterwards for chat and burger. This is the run that started the club and is dear to our hearts.
                     </p>
                   </div>
                 </CardContent>
@@ -315,63 +346,25 @@ export default async function Home() {
 
       {/* Footer */}
       <footer id="contact" className="border-t px-2 bg-muted/50">
-        <div className="container mx-auto py-12">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Good Time Running Club</h3>
-              <p className="text-sm text-muted-foreground">
-                Edinburgh based running group.
-              </p>
-              <p className="text-sm text-muted-foreground mb-4">
-                All inclusive, all abilities, all good.
-              </p>
-              <div className="flex gap-4">
-                <Link href="https://www.facebook.com/profile.php?id=61555882064629" className="text-muted-foreground hover:text-primary">
-                  <Facebook className="h-8 w-8" />
-                  <span className="sr-only">Facebook</span>
-                </Link>
-                <Link href="https://www.instagram.com/goodtimerunning" className="text-muted-foreground hover:text-primary">
-                  <Instagram className="h-8 w-8" />
-                  <span className="sr-only">Instagram</span>
-                </Link>
-                <Link href="https://x.com/goodtimerunnin" className="text-muted-foreground hover:text-primary">
-                  <Twitter className="h-8 w-8" />
-                  <span className="sr-only">Twitter</span>
-                </Link>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="#about" className="text-muted-foreground hover:text-primary">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#runs" className="text-muted-foreground hover:text-primary">
-                    Regular Runs
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#events" className="text-muted-foreground hover:text-primary">
-                    Events Calendar
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-              <address className="not-italic text-sm text-muted-foreground space-y-2">
-                <p>DM on Instagram</p>
-                <p>Email: info@goodtimerunning.com</p>
-              </address>
-            </div>
-          </div>
-          <div className="mt-12 pt-6 border-t text-center text-sm text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Good Time Running Club. All rights reserved.</p>
-          </div>
+      <div className="container mx-auto pb-12 p-6">
+        <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
+          <Link href="https://www.facebook.com/profile.php?id=61555882064629" className="text-primary hover:text-primary">
+            <h3 className="font-extrabold text-xl">FACEBOOK</h3>
+          </Link>
+          <Link href="https://www.instagram.com/goodtimerunning" className="text-primary hover:text-primary">
+            <h3 className="font-extrabold text-xl">INSTAGRAM</h3>
+          </Link>
+          <Link href="https://x.com/goodtimerunnin" className="text-primary hover:text-primary">
+            <h3 className="font-extrabold text-xl">TWITTER</h3>
+          </Link>
+          <Link href="https://www.strava.com/clubs/GoodTimeRunnin" className="text-primary hover:text-primary">
+            <h3 className="font-extrabold text-xl">STRAVA</h3>
+          </Link>
+          <Link href="mailto:info@goodtimerunning.com" className="text-primary hover:text-primary">
+            <h3 className="font-extrabold text-xl">EMAIL US</h3>
+          </Link>
         </div>
+      </div>
       </footer>
     </div>
   )
