@@ -77,7 +77,6 @@ export async function getAllEvents() {
 export async function getAllEventsThisYear() {
   try {
     const today = new Date();
-    const yearStart = new Date(today.getFullYear(), 0, 1).toISOString(); // January 1st of this year
     const yearEnd = new Date(today.getFullYear()+1, today.getMonth(), today.getDay(), 23, 59, 59).toISOString(); // December 31st of this year
     const todayISOString = today.toISOString(); // Today’s date in ISO format
 
