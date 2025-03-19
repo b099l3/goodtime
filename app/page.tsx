@@ -1,15 +1,17 @@
-"use client"
-
 import NewsletterForm from "@/components/newsletter-form"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import MobileMenu from "@/components/ui/mobile-menu"
+import { ContentfulImage, getUpcomingEvents } from "@/lib/contentful"
 import { Calendar, Clock, Facebook, Instagram, MapPin, Twitter } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
 
-export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+export const revalidate = 3600 // Revalidate every hour
+
+export default async function Home() {
+  // Fetch upcoming events from Contentful
+  const events = await getUpcomingEvents(6)
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header */}
@@ -38,58 +40,14 @@ export default function Home() {
               Contact
             </Link>
           </nav>
-          <div className="md:hidden">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              Menu
-            </Button>
+          <MobileMenu />
           </div>
-          </div>
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden">
-            <nav className="container flex flex-col space-y-3 py-4 border-t">
-              <Link
-                href="#about"
-                className="text-sm font-medium transition-colors hover:text-primary"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link
-                href="#runs"
-                className="text-sm font-medium transition-colors hover:text-primary"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Regular Runs
-              </Link>
-              <Link
-                href="#events"
-                className="text-sm font-medium transition-colors hover:text-primary"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Events
-              </Link>
-              <Link
-                href="#contact"
-                className="text-sm font-medium transition-colors hover:text-primary"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact
-              </Link>
-            </nav>
-          </div>
-        )}
       </header>
 
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative">
-          <div className="h-[89vh] w-full relative">
+          <div className="h-[100vh] w-full relative">
             <Image
               src="/background.png?height=800&width=1600"
               alt="Runners in action"
@@ -119,19 +77,19 @@ export default function Home() {
                   HOW IT STARTED
                 </h2>
                 <p className="text-muted-foreground mb-3">
-                  During The Covid 19 Pandemic, We (Oli & Craig) Reconnected Through Our Mutual Love Of Running. We Started Good Time To Bring Local Runners Together.
+                  During the Covid-19 pandemic, We (Oli & Craig) reconnected through our mutual love of running. We started Good Time to bring local runners together.
                 </p>
                 <h3 className="text-xl font-bold tracking-tight sm:text-2xl mb-1">
                   WHO IS GTRC FOR?
                 </h3>
                 <p className="text-muted-foreground mb-3">
-                  Initially We Looked At Joining Other Local Runninc Clubs, But At The Time What Was On Offer Felt Too Advanced For Our Abilities. The Foundation Of Good Time Is That The Club Is Available For Everyone. If You&apos;ve Never Ran But Want To Give It A Try, We&apos;re Here For You. At Most Runs We Find Ourselves Having A Run/Walk Chat With A New Friend. Time And Time Again We Get Asked What Our Club Demographic Is, Honestly There Isnt One. We Are Such A Mismatched Group Of People, But Maybe That&apos;s Why It Works? Who Knows.
+                  Initially we looked at joining other local running clubs, but at the time, what was on offer felt too advanced for our abilities. The foundation of Good Time is that the club is available for everyone. If you&apos;ve never ran but want to give it a try, We&apos;re here for you. At most runs we find ourselves having a run/walk chat with a new friend. Time and time again we get asked what our club demographic is, honestly there isnt one. We are such a mismatched group of people, but maybe that&apos;s why it works? Who knows.
                 </p>
                 <h3 className="text-xl font-bold tracking-tight sm:text-2xl mb-1">
                   WHAT&apos;S THE DEAL?
                 </h3>
                 <p className="text-muted-foreground mb-6">
-                  We Meet Every Monday, Thursday And Sunday In The City, Mondays And Sundays In Portobello And Thursday In Leith. All Of Our Regular Runs Are Free And You Don&apos;t Need To Let Us Know If You Are Coming In Advance. 
+                  We meet every Monday, Thursday and Sunday in the city, Mondays and Sundays in Portobello and Thursday in Leith. All of our regular runs are free and you don&apos;t need to let us know if you are coming in advance. 
                 </p>
               </div>
               <div className="relative h-[400px] rounded-lg overflow-hidden">
@@ -156,11 +114,11 @@ export default function Home() {
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-3">
-              {/* Tuesday Run */}
+              {/* Monday Run */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Monday Pizza Run</CardTitle>
-                  <CardDescription>5km Run with Pizza</CardDescription>
+                  <CardTitle>Monday pizza run</CardTitle>
+                  <CardDescription>5km run with pizza</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="relative h-48 mb-4 rounded-md overflow-hidden">
@@ -178,11 +136,11 @@ export default function Home() {
                     </a>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">Mondays, 6:30 PM</span>
+                      <span className="text-sm">Mondays, 6:30 pm</span>
                     </div>
                     
                     <p className="text-sm text-muted-foreground mt-2">
-                      A Relaxed 5km Run Trying To Shake Off That Monday Feeling Followed By A Slice Of Half Price Pizza With Friends.
+                      A relaxed 5km run trying to shake off that Monday feeling followed by a slice of half price pizza with friends.
                     </p>
                   </div>
                 </CardContent>
@@ -191,8 +149,8 @@ export default function Home() {
               {/* Thursday Run */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Thursday Social Run</CardTitle>
-                  <CardDescription>Trail or Road? we have both!</CardDescription>
+                  <CardTitle>Thursday social run</CardTitle>
+                  <CardDescription>Trail or road? We have both!</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="relative h-48 mb-4 rounded-md overflow-hidden">
@@ -210,23 +168,23 @@ export default function Home() {
                     </a>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">Trail - Thursdays, 6:15 PM</span>
+                      <span className="text-sm">Trail - Thursdays, 6:15 pm</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">Road - Thursdays, 6:30 PM</span>
+                      <span className="text-sm">Road - Thursdays, 6:30 pm</span>
                     </div>
                     <p className="text-sm text-muted-foreground mt-2">
-                      We Have Two Options For You. A 5km Trail Run Around Holyrood Or Road Run Around Leith. Both Runs Start And Finish At The Pub, We Usually Head In For Some Food/Drink And Decent (Ish) Chat Afterwards.
+                      We have two options for you. A 5km trail run around Holyrood or road run around Leith. Both runs start and finish at the pub, We usually head in for some food/drink and chat afterwards.
                     </p>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Saturday Run */}
+              {/* Sunday Run */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Sunday Long Run</CardTitle>
+                  <CardTitle>Sunday long run</CardTitle>
                   <CardDescription>Distances for everyone</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -245,19 +203,19 @@ export default function Home() {
                     </a>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">15km - Saturdays, 10:00 AM</span>
+                      <span className="text-sm">15km - Saturdays, 10:00 am</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">10km - Saturdays, 10:30 AM</span>
+                      <span className="text-sm">10km - Saturdays, 10:30 am</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">5km - Saturdays, 11:00 AM</span>
+                      <span className="text-sm">5km - Saturdays, 11:00 am</span>
                     </div>
                     <p className="text-sm text-muted-foreground mt-2">
-                      On Sunday Mornings We Meet On The Portobello Prom Outside Crumbs For One Of Three Runs. Each Week We Offer A 5km, 10km And A 15km Run.
-                      Hang Out Afterwards For Chat And Refreshments From Crumbs.
+                      On Sunday Mornings we meet on the Portobello Prom outside Crumbs for one of three runs. Each week we offer a 5km, 10km and a 15km run.
+                      Hang out afterwards for chat and refreshments from Crumbs.
                     </p>
                   </div>
                 </CardContent>
@@ -275,147 +233,57 @@ export default function Home() {
                 Mark your calendar for these special club events and races.
               </p>
             </div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {/* Event 1 */}
-              <Card>
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-start">
-                    <CardTitle>Spring 10K Race</CardTitle>
-                    <div className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">Race</div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">April 15, 2025</span>
-                  </div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">City Park</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Our annual spring race through the beautiful city park. Medals for all finishers.
-                  </p>
-                </CardContent>
-              </Card>
+            {events.length > 0 ? (
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {events.map((event) => (
+                  <Link href={`/events/${event.fields.slug}`} key={event.sys.id}>
+                    <Card className="h-full transition-all hover:shadow-md">
+                      <CardHeader className="pb-2">
+                        <div className="flex justify-between items-start">
+                          <CardTitle>{event.fields.title}</CardTitle>
+                          <div className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">
+                            {event.fields.eventType}
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        {event.fields.image && (
+                          <div className="relative h-48 mb-4 py-4 rounded-md overflow-hidden">
+                            <Image
+                              src={`https:${(event.fields.image as unknown as ContentfulImage).fields?.file?.url}`}
+                              fill
+                              alt={event.fields.title || "Event Image"}
+                              className="object-cover" />
+                          </div>
+                        )}
+                        <div className="flex items-center gap-2 mb-2">
+                          <Calendar className="h-4 w-4 text-muted-foreground" />
+                          <span className="text-sm">{new Date(event.fields.date).toLocaleDateString()}</span>
+                          <span className="text-sm">{new Date(event.fields.date).toLocaleTimeString()}</span>
+                        </div>
+                        <div className="flex items-center gap-2 mb-4">
+                          <MapPin className="h-4 w-4 text-muted-foreground" />
+                          <span className="text-sm">{event.fields.locationName}</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          {event.fields.description.substring(0, 120)}
+                          {event.fields.description.length > 120 ? "..." : ""}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8">
+                <p>No upcoming events at the moment. Check back soon!</p>
+              </div>
+            )}
 
-              {/* Event 2 */}
-              <Card>
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-start">
-                    <CardTitle>Nutrition Workshop</CardTitle>
-                    <div className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">Workshop</div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">May 5, 2025</span>
-                  </div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">Community Center</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Learn about optimal nutrition for runners with our guest sports nutritionist.
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Event 3 */}
-              <Card>
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-start">
-                    <CardTitle>Summer BBQ</CardTitle>
-                    <div className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">Social</div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">June 20, 2025</span>
-                  </div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">Lakeside Park</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Annual club BBQ with games, food, and fun for members and their families.
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Event 4 */}
-              <Card>
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-start">
-                    <CardTitle>Trail Running Retreat</CardTitle>
-                    <div className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">Retreat</div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">July 15-17, 2025</span>
-                  </div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">Mountain Lodge</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Weekend retreat with trail running, workshops, and relaxation in the mountains.
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Event 5 */}
-              <Card>
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-start">
-                    <CardTitle>Half Marathon Training</CardTitle>
-                    <div className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">Training</div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">Starts August 1, 2025</span>
-                  </div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">Various Locations</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    12-week training program for the Fall Half Marathon. Coached sessions twice weekly.
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Event 6 */}
-              <Card>
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-start">
-                    <CardTitle>Fall Marathon</CardTitle>
-                    <div className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">Race</div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">October 10, 2025</span>
-                  </div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">Downtown</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    The biggest event of our year! Join our club team for the city&apos;s annual marathon.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
             <div className="mt-8 text-center">
-              <Button size="lg">View Full Calendar</Button>
+              <Button size="lg" asChild>
+                <Link href="/events">View Full Calendar</Link>
+              </Button>
             </div>
           </div>
         </section>
