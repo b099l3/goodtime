@@ -44,19 +44,9 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
   return (
     <div className="min-h-screen bg-background">
       <Header/>
-      <div className="text-primary p-14">
+      <div className="text-primary p-8 bg-gradient-to-r from-primary to-primary/60">
         <div className="container">
-          <h1 className="text-6xl font-bold mb-4">{event.fields.title}</h1>
-          <div className="flex flex-wrap gap-4 text-primary/90">
-            <div className="flex items-center gap-2">
-              <Calendar className="h-5 w-5" />
-              <span className="text-sm">{formatDate(event.fields.date)}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="h-5 w-5" />
-              <span>{event.fields.locationName}</span>
-            </div>
-          </div>
+          <h1 className="text-5xl font-bold mb-2 text-primary-foreground">{event.fields.title}</h1>
         </div>
       </div>
 
@@ -74,6 +64,16 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
                 />
               </div>
             )}
+            <div className="flex flex-wrap gap-4 text-primary/90 py-6">
+            <div className="flex items-center gap-2">
+              <Calendar className="h-5 w-5" />
+              <span className="text-sm">{formatDate(event.fields.date)}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <MapPin className="h-5 w-5" />
+              <span>{event.fields.locationName}</span>
+            </div>
+          </div>
             <h2 className="text-xl font-semibold mb-2">Event Details</h2>
             <div className="prose max-w-none">
               <p>{event.fields.description}</p>
