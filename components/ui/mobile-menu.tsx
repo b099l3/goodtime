@@ -20,28 +20,28 @@ export default function MobileMenu() {
         <div className="absolute left-0 right-0 top-12 z-50 bg-background border-b">
           <nav className="container flex flex-col space-y-3 p-4">
             <Link
-              href="#about"
+              href="/#about"
               className="text-3xl font-semibold transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
               About
             </Link>
             <Link
-              href="#runs"
+              href="/#runs"
               className="text-3xl font-semibold transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
               Regular Runs
             </Link>
             <Link
-              href="#events"
+              href="/#events"
               className="text-3xl font-semibold transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
               Events
             </Link>
             <Link
-              href="#contact"
+              href="/#contact"
               className="text-3xl font-semibold transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >

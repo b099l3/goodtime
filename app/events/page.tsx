@@ -28,8 +28,7 @@ export default async function EventsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-
-           <Header/>
+      <Header/>
       <header className="bg-primary text-primary-foreground p-14">
         <div className="container">
           <h1 className="text-4xl font-extrabold mb-2">Events Calendar</h1>

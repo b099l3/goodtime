@@ -1,8 +1,10 @@
 import AddToCalendar from "@/components/add-to-calendar"
 import { Button } from "@/components/ui/button"
-import { getAllEvents, getEventBySlug } from "@/lib/contentful"
+import Header from "@/components/ui/header"
+import { ContentfulImage, getAllEvents, getEventBySlug } from "@/lib/contentful"
 import { formatDate } from "@/lib/utils"
-import { ArrowLeft, Calendar, MapPin } from "lucide-react"
+import { Calendar, MapPin } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
@@ -41,17 +43,11 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="bg-primary text-primary-foreground py-16">
+      <Header/>
+      <div className="text-primary p-14">
         <div className="container">
-          <Link
-            href="/events"
-            className="inline-flex items-center text-sm text-primary-foreground/80 hover:text-primary-foreground mb-4"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to all events
-          </Link>
-          <h1 className="text-4xl font-bold mb-4">{event.fields.title}</h1>
-          <div className="flex flex-wrap gap-4 text-primary-foreground/90">
+          <h1 className="text-6xl font-bold mb-4">{event.fields.title}</h1>
+          <div className="flex flex-wrap gap-4 text-primary/90">
             <div className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
               <span className="text-sm">{formatDate(event.fields.date)}</span>
@@ -64,18 +60,29 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
         </div>
       </div>
 
-      <div className="container py-12">
+      <div className="container mx-auto">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-muted/30 rounded-lg p-6 mb-8">
+          <div className="bg-muted/30 rounded-lg p-6">
+            {event.fields.image && (
+              <div className="mb-4 rounded-md overflow-hidden">
+                <Image
+                  src={`https:${(event.fields.image as unknown as ContentfulImage).fields?.file?.url}`}
+                  alt={event.fields.title || "Event Image"}
+                  width={800}
+                  height={500}
+                  className="w-full h-auto rounded-md object-cover"
+                />
+              </div>
+            )}
             <h2 className="text-xl font-semibold mb-2">Event Details</h2>
             <div className="prose max-w-none">
               <p>{event.fields.description}</p>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 p-12">
             {event.fields.registerLink && (
-              <Button size="lg" className="flex-1">
+              <Button size="lg" className="flex-3">
                 <Link href={event.fields.registerLink}>Register for this Event</Link>
               </Button>
             )}
