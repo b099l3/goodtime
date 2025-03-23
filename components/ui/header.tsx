@@ -19,16 +19,16 @@ import MobileMenu from "./mobile-menu";
           </div>
           <nav className="hidden md:flex gap-6">
             <Link href="/#about" className="text-sm font-semibold transition-colors hover:text-primary">
-              About
+              ABOUT
             </Link>
             <Link href="/#runs" className="text-sm font-semibold transition-colors hover:text-primary">
-              Regular Runs
+              REGULAR RUNS
             </Link>
             <Link href="/#events" className="text-sm font-semibold transition-colors hover:text-primary">
-              Events
+              EVENTS
             </Link>
             <Link href="/#contact" className="text-sm font-semibold transition-colors hover:text-primary">
-              Contact
+              CONTACT
             </Link>
           </nav>
           <MobileMenu />

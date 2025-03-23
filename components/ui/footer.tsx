@@ -11,9 +11,6 @@ import Link from "next/link";
           <Link href="https://www.instagram.com/goodtimerunning" className="text-primary hover:text-primary">
             <h3 className="font-extrabold text-xl">INSTAGRAM</h3>
           </Link>
-          <Link href="https://x.com/goodtimerunnin" className="text-primary hover:text-primary">
-            <h3 className="font-extrabold text-xl">TWITTER</h3>
-          </Link>
           <Link href="https://www.strava.com/clubs/GoodTimeRunnin" className="text-primary hover:text-primary">
             <h3 className="font-extrabold text-xl">STRAVA</h3>
           </Link>

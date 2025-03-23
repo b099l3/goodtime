@@ -24,28 +24,28 @@ export default function MobileMenu() {
               className="text-3xl font-semibold transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              About
+              ABOUT
             </Link>
             <Link
               href="/#runs"
               className="text-3xl font-semibold transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Regular Runs
+              REGULAR RUNS
             </Link>
             <Link
               href="/#events"
               className="text-3xl font-semibold transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Events
+              EVENTS
             </Link>
             <Link
               href="/#contact"
               className="text-3xl font-semibold transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Contact
+              CONTACT
             </Link>
           </nav>
         </div>

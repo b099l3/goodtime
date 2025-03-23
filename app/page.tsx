@@ -22,66 +22,72 @@ export default async function Home() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative">
-          <div className="h-[100vh] w-full relative">
-            
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/60" />
-            <div className="container mx-auto absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-            <div className="h-[25vw] w-[80vw] relative m-6">
-          <Image
-              src="/logo-light.svg"
-              alt="Runners in action"
+        <div className="h-[60vh] w-full relative overflow-hidden">
+            {/* Background Image */}
+            <Image
+              src="/GTRC_bg_min.jpg"
+              alt="Blue gradient background"
               fill
+              className="object-cover"
               priority
             />
-          </div>
-              <p className="max-w-2xl text-xs sm:text-xl md:text-2xl lg:text-3xl font-bold">
-                ALL INCLUSIVE. ALL ABILITIES. ALL GOOD.
-              </p>
+
+            {/* Foreground Image (Logo) */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative w-full max-w-2xl h-[70vh]">
+                <Image
+                  src="/GTRC_fg_min.png"
+                  alt="Good Time Running Club"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
             </div>
-          </div>
+            </div>
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-16 pb-8 px-2 bg-muted/50">
+        <section id="about" className="py-4 pb-8 px-2 bg-muted/50">
           <div className="container mx-auto">
-            <div className="grid gap-10 md:grid-cols-2 items-center">
+            <div className="grid gap-6 md:grid-cols-2 items-center">
+              <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
+                <Image
+                  src="/HowItStarted.jpeg?height=1643&width=1088"
+                  alt="Group of runners"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <div>
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-3">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                   HOW IT STARTED
                 </h2>
                 <p className="text-muted-foreground mb-3">
                   During the Covid-19 pandemic, We (Oli & Craig) reconnected through our mutual love of running. We started Good Time to bring local runners together.
                 </p>
-                <h3 className="text-xl font-bold tracking-tight sm:text-2xl mb-1">
+                <h3 className="text-xl font-bold tracking-tight sm:text-2xl">
                   WHO IS GTRC FOR?
                 </h3>
                 <p className="text-muted-foreground mb-3">
-                  Initially we looked at joining other local running clubs, but at the time, what was on offer felt too advanced for our abilities. The foundation of Good Time is that the club is available for everyone. If you&apos;ve never ran but want to give it a try, We&apos;re here for you. At most runs we find ourselves having a run/walk chat with a new friend. Time and time again we get asked what our club demographic is, honestly there isnt one. We are such a mismatched group of people, but maybe that&apos;s why it works? Who knows.
+                  Initially we looked at joining other local running clubs, but at the time, what was on offer felt too advanced for our abilities. The foundation of Good Time is that the club is available for everyone. If you`ve never ran but want to give it a try, We`re here for you. At most runs we find ourselves having a run/walk chat with a new friend. Time and time again we get asked what our club demographic is, honestly there isnt one. We are such a mismatched group of people, but maybe that`s why it works? Who knows.
                 </p>
-                <h3 className="text-xl font-bold tracking-tight sm:text-2xl mb-1">
-                  WHAT&apos;S THE DEAL?
+                <h3 className="text-xl font-bold tracking-tight sm:text-2xl">
+                  WHAT`S THE DEAL?
                 </h3>
                 <p className="text-muted-foreground mb-6">
-                  We meet every Monday, Thursday and Sunday in the city, Mondays and Sundays in Portobello and Thursday in Leith. All of our regular runs are free and you don&apos;t need to let us know if you are coming in advance. 
+                  We meet every Monday, Thursday and Sunday in the city, Mondays and Sundays in Portobello and Thursday in Leith. All of our regular runs are free and you don`t need to let us know if you are coming in advance. 
                 </p>
-              </div>
-              <div className="relative h-[400px] rounded-lg overflow-hidden">
-                <Image
-                  src="/craiver.JPG?height=800&width=1200"
-                  alt="Group of runners"
-                  fill
-                  className="object-cover"
-                />
               </div>
             </div>
           </div>
         </section>
 
         {/* Regular Runs Section */}
-        <section id="runs" className="py-16 pb-8 px-2">
+        <section id="runs" className="py-4 pb-8 px-2">
           <div className="container mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Our Regular Runs</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">OUR REGULAR RUNS</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Join us for our regular runs, We don’t run at any set pace, and you’ll always have someone to run with.
               </p>
@@ -96,7 +102,7 @@ export default async function Home() {
                 <CardContent>
                   <div className="relative h-48 mb-4 rounded-md overflow-hidden">
                     <Image
-                      src="/run-civs.png?height=400&width=600"
+                      src="/Monday.jpeg?height=400&width=600"
                       alt="Track running"
                       fill
                       className="object-cover"
@@ -128,7 +134,7 @@ export default async function Home() {
                 <CardContent>
                   <div className="relative h-48 mb-4 rounded-md overflow-hidden">
                     <Image
-                      src="/run-eastway.jpeg?height=400&width=600"
+                      src="/Thursday.jpeg?height=400&width=600"
                       alt="Group running"
                       fill
                       className="object-cover"
@@ -163,7 +169,7 @@ export default async function Home() {
                 <CardContent>
                   <div className="relative h-48 mb-4 rounded-md overflow-hidden">
                     <Image
-                      src="/run-crumbs.jpg?height=400&width=600"
+                      src="/Sunday.jpeg?height=400&width=600"
                       alt="Trail running"
                       fill
                       className="object-cover"
@@ -198,13 +204,13 @@ export default async function Home() {
               {/* EOTM Run */}
               <Card>
                 <CardHeader>
-                  <CardTitle>End of the Month run</CardTitle>
+                  <CardTitle className='text-3xl'>End of the Month Run</CardTitle>
                   <CardDescription>The 5km where it all started</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="relative h-48 mb-4 rounded-md overflow-hidden">
+                  <div className="relative aspect-[5/4] mb-4 rounded-md overflow-hidden">
                     <Image
-                      src="/run-ptap.jpeg?height=400&width=600"
+                      src="/EndOfTheMonth.jpeg?height=400&width=600"
                       alt="Trail running"
                       fill
                       className="object-cover"
@@ -213,11 +219,11 @@ export default async function Home() {
                   <div className="space-y-2">
                     <a className="flex items-center gap-2" href="https://g.co/kgs/37xpKct">
                       <MapPin className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">Portobello Tap</span>
+                      <span className="text-base">Portobello Tap</span>
                     </a>
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">Last Friday on the month, 6:30 PM</span>
+                      <span className="text-base">Last Friday on the month, 6:30 PM</span>
                     </div>
                     <p className="text-sm text-muted-foreground mt-2">
                       On the last Friday of the month, we meet at the Portobello Tap for a 5km run.
@@ -226,15 +232,47 @@ export default async function Home() {
                   </div>
                 </CardContent>
               </Card>
+
+              <Card className="relative overflow-hidden">
+                <Image
+                  src="/EndOfTheMonth.jpeg?height=400&width=600"
+                  alt="Trail running"
+                  fill
+                  className="object-cover z-0"
+                />
+                <div className="relative z-10 text-white p-2 rounded-md">
+                  <CardHeader>
+                    <CardTitle className="text-3xl">End of the Month run</CardTitle>
+                    <CardDescription className='text-white'>The 5km where it all started</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2 aspect-square">
+                    <div className="space-y-2">
+                      <a className="flex items-center gap-2" href="https://g.co/kgs/37xpKct">
+                        <MapPin className="h-4 w-4" />
+                        <span className="text-base">Portobello Tap</span>
+                      </a>
+                      <div className="flex items-center gap-2">
+                        <Clock className="h-4 w-4" />
+                        <span className="text-base">Last Friday on the month, 6:30 PM</span>
+                      </div>
+                      <p className="text-sm mt-2">
+                        On the last Friday of the month, we meet at the Portobello Tap for a 5km run.
+                        Hang out afterwards for chat and burger. This is the run that started the club and is dear to our hearts.
+                      </p>
+                    </div>
+                  </CardContent>
+                </div>
+              </Card>
+
             </div>
           </div>
         </section>
 
         {/* Events Calendar Section */}
-        <section id="events" className="py-16 pb-8 px-2 bg-muted/50">
+        <section id="events" className="py-4 pb-8 px-2 bg-muted/50">
           <div className="container mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Upcoming Events</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">UPCOMING EVENTS</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Mark your calendar for these special club events and races.
               </p>
