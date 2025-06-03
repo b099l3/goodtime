@@ -1,4 +1,3 @@
-import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { leagueSpartan } from './fonts';
 import "./globals.css";
@@ -17,7 +16,6 @@ export default function RootLayout({
     <html lang="en" className={leagueSpartan.variable}>
       <body className="font-sans">
         {children}
-        <Toaster />
       </body>
     </html>
   )

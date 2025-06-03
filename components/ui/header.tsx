@@ -9,11 +9,12 @@ import MobileMenu from "./mobile-menu";
           <div className="flex items-center gap-2">
           <Link href="/" >
           <Image
-              src="/logo-dark.svg?height=180&width=100"
+              src="/logo-dark.svg"
               alt="Runners in action"
               width={100}
               height={80}
               priority
+              className="h-8 w-auto"
               />
           </Link>
           </div>

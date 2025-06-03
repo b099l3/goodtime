@@ -15,7 +15,7 @@ import Link from "next/link";
             <h3 className="font-extrabold text-xl">STRAVA</h3>
           </Link>
           <Link href="mailto:goodtimerunning@outlook.com" className="text-primary hover:text-primary">
-            <h3 className="font-extrabold text-xl">EMAIL US</h3>
+            <h3 className="font-extrabold text-xl">EMAIL</h3>
           </Link>
         </div>
       </div>

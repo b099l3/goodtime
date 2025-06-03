@@ -1,4 +1,4 @@
-import { createClient, EntryFieldTypes } from "contentful";
+import { Asset, createClient, EntryFieldTypes } from "contentful";
 
 export interface ContentfulImage {
   fields: {
@@ -27,7 +27,7 @@ export type EventEntry = {
     description: string
     eventType: string
     slug: string
-    image: EntryFieldTypes.AssetLink,
+    image: Asset,
   }
 }
 
@@ -46,7 +46,7 @@ export async function getUpcomingEvents(limit = 6): Promise<EventEntry[]> {
       limit,
       // Only fetch events that are today or in the future
       "fields.date[gte]": new Date().toISOString().split("T")[0],
-      include: 2,
+      include: 3,
     })
 
     return response.items as unknown as EventEntry[]
@@ -63,7 +63,7 @@ export async function getAllEvents() {
       content_type: "eventEntry", // Use your actual content type ID here
       order: ["fields.date"], // Correct syntax for ordering
       limit: 100,
-      include: 2,
+      include: 3,
     })
 
     return response.items as unknown as EventEntry[] || []
@@ -84,7 +84,7 @@ export async function getAllEventsThisYear() {
       content_type: "eventEntry", // Your Contentful content type ID
       order: ["fields.date"], // Order by event date (ascending)
       limit: 100,
-      include: 2,
+      include: 3,
       "fields.date[gte]": todayISOString, // Only events from today onwards
       "fields.date[lte]": yearEnd, // Only events before the end of this year
     });
@@ -103,7 +103,7 @@ export async function getEventBySlug(slug: string): Promise<EventEntry | null> {
       content_type: "eventEntry", // Use your actual content type ID here
       "fields.slug": slug, // This is the correct syntax
       limit: 1,
-      include: 2,
+      include: 3,
     })
 
     if (response.items.length === 0) {

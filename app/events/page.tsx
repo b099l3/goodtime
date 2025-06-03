@@ -1,11 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import EventCard from "@/components/ui/cards/event-card"
 import Footer from "@/components/ui/footer"
 import Header from "@/components/ui/header"
-import { ContentfulImage, getAllEventsThisYear } from "@/lib/contentful"
-import { formatDate } from "@/lib/utils"
-import { Calendar, MapPin } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { getAllEventsThisYear } from "@/lib/contentful"
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -32,7 +28,9 @@ export default async function EventsPage() {
       <header className="bg-primary text-primary-foreground p-14">
         <div className="container">
           <h1 className="text-4xl font-extrabold mb-2">Events Calendar</h1>
-          <p className="text-xl opacity-90">Join us for upcoming runs, races, workshops, and social events</p>
+          <p className="text-xl opacity-90">
+            Join us for upcoming runs, races, workshops, and social events
+          </p>
         </div>
       </header>
 
@@ -42,40 +40,9 @@ export default async function EventsPage() {
             <div key={monthYear} className="mb-12">
               <h2 className="text-2xl font-bold mb-6 border-b pb-2">{monthYear}</h2>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {monthEvents.map((event) => (
-                  <Link href={`/events/${event.fields.slug}`} key={event.sys.id}>
-                    <Card className="h-full transition-all hover:shadow-md">
-                      <CardHeader className="pb-2">
-                        <div className="flex justify-between items-start">
-                          <CardTitle>{event.fields.title}</CardTitle>
-                          <div className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">
-                            {event.fields.eventType}
-                          </div>
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        {event.fields.image && (
-                          <div className="relative h-48 mb-4 rounded-md overflow-hidden">
-                            <Image
-                              src={`https:${(event.fields.image as unknown as ContentfulImage).fields?.file?.url}`}
-                              fill
-                              alt={event.fields.title || "Event Image"}
-                              className="object-cover" />
-                          </div>
-                        )}
-                        <div className="flex items-center gap-2 mb-2">
-                          <Calendar className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-sm">{formatDate(event.fields.date)}</span>
-                        </div>
-                        <div className="flex items-center gap-2 mb-4">
-                          <MapPin className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-sm">{event.fields.locationName}</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground line-clamp-3">{event.fields.description}</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
+                {monthEvents.map((event, idx) => (
+                  <EventCard key={idx} event={event} />
+                  ))}
               </div>
             </div>
           ))
