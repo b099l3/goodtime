@@ -33,9 +33,17 @@ export type EventEntry = {
 }
 
 // Initialize Contentful client
+const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env
+
+if (!CONTENTFUL_SPACE_ID || !CONTENTFUL_ACCESS_TOKEN) {
+  throw new Error(
+    "Both CONTENTFUL_SPACE_ID and CONTENTFUL_ACCESS_TOKEN environment variables must be defined"
+  )
+}
+
 export const contentfulClient = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID || "",
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || "",
+  space: CONTENTFUL_SPACE_ID,
+  accessToken: CONTENTFUL_ACCESS_TOKEN,
 })
 
 // Fetch upcoming events from Contentful
