@@ -1,7 +1,9 @@
 import AddToCalendar from "@/components/add-to-calendar"
 import { Button } from "@/components/ui/button"
 import Header from "@/components/ui/header"
+import GpxMap from "@/components/gpx-map"
 import { ContentfulImage, getAllEvents, getEventBySlug } from "@/lib/contentful"
+import type { Asset } from "contentful"
 import { formatDate } from "@/lib/utils"
 import { Calendar, MapPin } from "lucide-react"
 import Image from "next/image"
@@ -88,6 +90,12 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
             )}
             <AddToCalendar event={calendarEvent} />
           </div>
+
+          {event.fields.gpxFile && (
+            <div className="my-8">
+              <GpxMap gpxUrl={`https:${(event.fields.gpxFile as Asset).fields?.file?.url ?? ''}`} />
+            </div>
+          )}
         </div>
       </div>
     </div>
