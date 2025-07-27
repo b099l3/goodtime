@@ -21,8 +21,8 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function EventPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function EventPage(props: { params: Promise<{ slug: string }> }) {
+  const { slug } = await props.params;
   const event = await getEventBySlug(slug);
 
   if (!event) {
