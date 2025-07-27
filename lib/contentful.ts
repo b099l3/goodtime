@@ -28,6 +28,7 @@ export type EventEntry = {
     eventType: string
     slug: string
     image: Asset,
+    gpxFile?: Asset,
   }
 }
 
