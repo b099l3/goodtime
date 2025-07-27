@@ -84,7 +84,7 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
 
           <div className="flex flex-col sm:flex-row gap-4 p-12">
             {event.fields.registerLink && (
-              <Button size="lg" className="flex-3">
+              <Button size="lg" className="flex-3" asChild>
                 <Link href={event.fields.registerLink}>Register for this Event</Link>
               </Button>
             )}
