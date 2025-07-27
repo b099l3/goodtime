@@ -1,5 +1,6 @@
 import { Clock, MapPin } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface RunCardProps {
   title: string;
@@ -9,6 +10,7 @@ interface RunCardProps {
   locationName: string;
   locationUrl: string;
   times: string[];
+  slug: string;
 }
 
 export default function RunCard({
@@ -19,8 +21,10 @@ export default function RunCard({
   locationName,
   locationUrl,
   times,
+  slug,
 }: RunCardProps) {
   return (
+    <Link href={`/events/${slug}`} className="h-full">
     <div className="relative overflow-hidden rounded-xl bg-card text-card-foreground shadow h-[70vh]">
       <Image
         src={image}
@@ -57,5 +61,6 @@ export default function RunCard({
         </div>
       </div>
     </div>
+    </Link>
   );
 }
