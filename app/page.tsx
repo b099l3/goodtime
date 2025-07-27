@@ -120,8 +120,7 @@ export default async function Home() {
                 image="/Traade.jpeg?height=400&width=600"
                 title="Sunday 5km run"
                 subtitle="Coffee, Chat & Cinnamon Bun!"
-                desc="On the last Friday of the month, we meet at the Portobello Tap for a 5km run.
-                Hang out afterwards for chat and burger. This is the run that started the club and is dear to our hearts."
+                desc="8am every Sunday we host a 5km starting and finishing at Traade Space on Portobello High Street. Coffee, pastries, and great company."
                 locationName="Traade"
                 locationUrl="https://maps.app.goo.gl/qjkYhxWiHNybDUis8"
                 times={[
