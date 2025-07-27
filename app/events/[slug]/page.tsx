@@ -2,7 +2,7 @@ import AddToCalendar from "@/components/add-to-calendar"
 import GpxMapWrapper from "@/components/gpx-map-wrapper"
 import { Button } from "@/components/ui/button"
 import Header from "@/components/ui/header"
-import { ContentfulImage, getAllEvents, getEventBySlug } from "@/lib/contentful"
+import { ContentfulImage, getAllEvents, getEventBySlug, getRegularRuns } from "@/lib/contentful"
 import { formatDate } from "@/lib/utils"
 import type { Asset } from "contentful"
 import { Calendar, MapPin } from "lucide-react"
@@ -15,8 +15,9 @@ export const revalidate = 3600 // Revalidate every hour
 // Generate static params for all events
 export async function generateStaticParams() {
   const events = await getAllEvents()
+  const runs = await getRegularRuns()
 
-  return events.map((event) => ({
+  return [...events, ...runs].map((event) => ({
     slug: event.fields.slug,
   }))
 }
