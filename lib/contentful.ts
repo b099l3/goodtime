@@ -33,17 +33,32 @@ export type EventEntry = {
 }
 
 // Initialize Contentful client
-const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env
+const {
+  CONTENTFUL_SPACE_ID,
+  CONTENTFUL_ACCESS_TOKEN,
+  CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+  VERCEL_ENV,
+} = process.env
 
-if (!CONTENTFUL_SPACE_ID || !CONTENTFUL_ACCESS_TOKEN) {
+if (!CONTENTFUL_SPACE_ID) {
+  throw new Error("CONTENTFUL_SPACE_ID environment variable must be defined")
+}
+
+const isPreview = VERCEL_ENV === "preview"
+const accessToken = isPreview
+  ? CONTENTFUL_PREVIEW_ACCESS_TOKEN
+  : CONTENTFUL_ACCESS_TOKEN
+
+if (!accessToken) {
   throw new Error(
-    "Both CONTENTFUL_SPACE_ID and CONTENTFUL_ACCESS_TOKEN environment variables must be defined"
+    `Missing Contentful access token for ${isPreview ? "preview" : "production"} environment`
   )
 }
 
 export const contentfulClient = createClient({
   space: CONTENTFUL_SPACE_ID,
-  accessToken: CONTENTFUL_ACCESS_TOKEN,
+  accessToken,
+  ...(isPreview ? { host: "preview.contentful.com" } : {}),
 })
 
 // Fetch upcoming events from Contentful
