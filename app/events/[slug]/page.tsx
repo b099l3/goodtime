@@ -1,10 +1,10 @@
 import AddToCalendar from "@/components/add-to-calendar"
+import GpxMapWrapper from "@/components/gpx-map-wrapper"
 import { Button } from "@/components/ui/button"
 import Header from "@/components/ui/header"
-import GpxMap from "@/components/gpx-map"
 import { ContentfulImage, getAllEvents, getEventBySlug } from "@/lib/contentful"
-import type { Asset } from "contentful"
 import { formatDate } from "@/lib/utils"
+import type { Asset } from "contentful"
 import { Calendar, MapPin } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -93,7 +93,7 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
 
           {event.fields.gpxFile && (
             <div className="my-8">
-              <GpxMap gpxUrl={`https:${(event.fields.gpxFile as Asset).fields?.file?.url ?? ''}`} />
+              <GpxMapWrapper gpxUrl={`https:${(event.fields.gpxFile as Asset).fields?.file?.url ?? ''}`} />
             </div>
           )}
         </div>

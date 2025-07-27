@@ -1,11 +1,11 @@
 "use client"
 
-import { MapContainer, TileLayer, Polyline, Marker, Popup } from 'react-leaflet'
-import { useEffect, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import { useEffect, useState } from 'react'
+import { MapContainer, Marker, Polyline, Popup, TileLayer } from 'react-leaflet'
 
-interface GpxMapProps {
+export interface GpxMapProps {
   gpxUrl: string
 }
 
