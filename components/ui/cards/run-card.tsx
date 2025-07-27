@@ -44,11 +44,7 @@ export default function RunCard({
               <MapPin className="h-4 w-4" />
               <span className="text-base">{locationName}</span>
             </a>
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              <span className="text-base">Last Friday of the month, 6:30 PM</span>
-            </div>
-             {times.map((item, idx) => {
+            {times.map((item, idx) => {
                 return (
                   <div key={idx} className="flex items-center gap-2">
                     <Clock className="h-4 w-4" />
@@ -56,7 +52,7 @@ export default function RunCard({
                   </div>
                 );
             })}
-            <p className="text- mt-2">{desc}</p>
+            <p className="text-sm mt-2">{desc}</p>
           </div>
         </div>
       </div>
