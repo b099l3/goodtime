@@ -21,7 +21,7 @@ const faqs: FAQItem[] = [
     ),
   },
   {
-    question: "Do I need sign up/pay",
+    question: "Do I need to sign up/pay",
     answer:
       "No, just show up if you fancy it, no need to let us know if you’re coming. The runs are completely free.",
   },
