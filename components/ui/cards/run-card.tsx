@@ -8,7 +8,6 @@ interface RunCardProps {
   desc: string;
   image: string;
   locationName: string;
-  locationUrl: string;
   times: string[];
   slug: string;
 }
@@ -19,7 +18,6 @@ export default function RunCard({
   subtitle,
   desc,
   locationName,
-  locationUrl,
   times,
   slug,
 }: RunCardProps) {

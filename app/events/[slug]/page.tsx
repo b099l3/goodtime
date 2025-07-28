@@ -2,12 +2,11 @@ import AddToCalendar from "@/components/add-to-calendar"
 import GpxMapWrapper from "@/components/gpx-map-wrapper"
 import { Button } from "@/components/ui/button"
 import Header from "@/components/ui/header"
-import { ContentfulImage, getAllEvents, getEventBySlug, getRegularRuns } from "@/lib/contentful"
+import { getAllEvents, getEventBySlug, getRegularRuns } from "@/lib/contentful"
 import { formatDate } from "@/lib/utils"
 import type { Asset } from "contentful"
 import { Calendar, Clock, MapPin } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 import { notFound } from "next/navigation"
 
 export const revalidate = 3600 // Revalidate every hour
@@ -59,7 +58,7 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
             {event.fields.image && (
               <div className="mb-4 rounded-md overflow-hidden">
                 <Image
-                  src={`https:${(event.fields.image as unknown as ContentfulImage).fields?.file?.url}`}
+                  src={`https:${event.fields.image?.fields?.file?.url}`}
                   alt={event.fields.title || "Event Image"}
                   width={800}
                   height={500}
@@ -84,10 +83,12 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
                 <span className="text-sm">{event.fields.times.join(', ')}</span>
               </div>
             )}
-            <div className="flex items-center gap-2">
-              <MapPin className="h-5 w-5" />
-              <span>{event.fields.locationName}</span>
-            </div>
+            <a target="_blank"  href={event.fields.location ? `https://www.google.com/maps/search/?api=1&query=${event.fields.location.lat},${event.fields.location.lon}` : '#'}>
+              <div className="flex items-center gap-2">
+                <MapPin className="h-5 w-5" />
+                <span>{event.fields.locationName}</span>
+              </div>
+            </a>
           </div>
             <h2 className="text-xl font-semibold mb-2">Event Details</h2>
             {event.fields.gpxFile && (
@@ -103,7 +104,7 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
           <div className="flex flex-col sm:flex-row gap-4 p-12">
             {event.fields.registerLink && (
               <Button size="lg" className="flex-3" asChild>
-                <Link href={event.fields.registerLink}>Register for this Event</Link>
+                <a target="_blank" href={event.fields.registerLink}>Register for this Event</a>
               </Button>
             )}
             {event.fields.eventType != "Regular Run" && (
