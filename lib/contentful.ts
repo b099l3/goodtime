@@ -46,7 +46,7 @@ if (!CONTENTFUL_SPACE_ID) {
   throw new Error("CONTENTFUL_SPACE_ID environment variable must be defined")
 }
 
-const isPreview = VERCEL_ENV === "preview" || "dev"
+const isPreview = VERCEL_ENV === "preview"
 const accessToken = isPreview
   ? CONTENTFUL_PREVIEW_ACCESS_TOKEN
   : CONTENTFUL_ACCESS_TOKEN
