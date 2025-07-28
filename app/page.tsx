@@ -4,7 +4,7 @@ import EventCard from "@/components/ui/cards/event-card"
 import RunCard from "@/components/ui/cards/run-card"
 import Footer from "@/components/ui/footer"
 import Header from "@/components/ui/header"
-import { ContentfulImage, getUpcomingEvents, getRegularRuns } from "@/lib/contentful"
+import { ContentfulImage, ContentfulLocation, getRegularRuns, getUpcomingEvents } from "@/lib/contentful"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -99,11 +99,11 @@ export default async function Home() {
                   key={idx}
                   image={run.fields.image ? `https:${(run.fields.image as unknown as ContentfulImage).fields.file.url}` : ''}
                   title={run.fields.title}
-                  subtitle={run.fields.eventType}
+                  subtitle={run.fields.subtitle}
                   desc={run.fields.description}
                   locationName={run.fields.locationName}
-                  locationUrl={run.fields.location ? `https://www.google.com/maps/search/?api=1&query=${run.fields.location.lat},${run.fields.location.lon}` : '#'}
-                  times={[run.fields.date]}
+                  locationUrl={run.fields.location ? `https://www.google.com/maps/search/?api=1&query=${(run.fields.location as unknown as ContentfulLocation).fields.lat},${(run.fields.location as unknown as ContentfulLocation).fields.lon}` : '#'}
+                  times={run.fields.times}
                   slug={run.fields.slug}
                 />
               ))}

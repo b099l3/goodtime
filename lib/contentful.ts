@@ -8,6 +8,13 @@ export interface ContentfulImage {
   };
 }
 
+export interface ContentfulLocation {
+  fields: {
+    lat: string;
+    lon: string;
+  };
+}
+
 // This matches Contentful's actual return type structure
 export type EventEntry = {
   sys: {
@@ -20,7 +27,9 @@ export type EventEntry = {
   }
   fields: {
     title: string
+    subtitle: string
     date: string
+    times: string[]
     location: EntryFieldTypes.Location,
     locationName: string
     registerLink: string
@@ -44,7 +53,7 @@ if (!CONTENTFUL_SPACE_ID) {
   throw new Error("CONTENTFUL_SPACE_ID environment variable must be defined")
 }
 
-const isPreview = VERCEL_ENV === "preview"
+const isPreview = VERCEL_ENV === "preview" || "dev"
 const accessToken = isPreview
   ? CONTENTFUL_PREVIEW_ACCESS_TOKEN
   : CONTENTFUL_ACCESS_TOKEN
