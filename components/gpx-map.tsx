@@ -5,6 +5,15 @@ import 'leaflet/dist/leaflet.css'
 import { useEffect, useState } from 'react'
 import { MapContainer, Marker, Polyline, Popup, TileLayer } from 'react-leaflet'
 
+const markerIcon = L.icon({
+  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+})
+
 export interface GpxMapProps {
   gpxUrl: string
 }
@@ -51,10 +60,10 @@ export default function GpxMap({ gpxUrl }: GpxMapProps) {
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
       <Polyline positions={positions} color='#FF0000' />
-      <Marker position={start} icon={L.icon({ iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png', shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png' })}>
+      <Marker position={start} icon={markerIcon}>
         <Popup>Start</Popup>
       </Marker>
-      <Marker position={end} icon={L.icon({ iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png', shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png' })}>
+      <Marker position={end} icon={markerIcon}>
         <Popup>Finish</Popup>
       </Marker>
     </MapContainer>
