@@ -8,13 +8,6 @@ export interface ContentfulImage {
   };
 }
 
-export interface ContentfulLocation {
-  fields: {
-    lat: string;
-    lon: string;
-  };
-}
-
 // This matches Contentful's actual return type structure
 export type EventEntry = {
   sys: {
@@ -36,7 +29,7 @@ export type EventEntry = {
     description: string
     eventType: string
     slug: string
-    image: Asset,
+    image: EntryFields.AssetLink,
     gpxFile?: Asset,
   }
 }
