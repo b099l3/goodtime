@@ -5,7 +5,7 @@ import Header from "@/components/ui/header"
 import { ContentfulImage, getAllEvents, getEventBySlug, getRegularRuns } from "@/lib/contentful"
 import { formatDate } from "@/lib/utils"
 import type { Asset } from "contentful"
-import { Calendar, MapPin, Clock } from "lucide-react"
+import { Calendar, Clock, MapPin } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -71,7 +71,7 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
             <div className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
               {event.fields.eventType === "Regular Run" ? (
-                event.fields.times.map((time, index) => (
+                event.fields.times?.map((time, index) => (
                   <span key={index} className="text-sm">{time}</span>
                 ))
               ) : (

@@ -1,4 +1,4 @@
-import { Asset, createClient, EntryFieldTypes } from "contentful";
+import { Asset, createClient, EntryFields } from "contentful";
 
 export interface ContentfulImage {
   fields: {
@@ -29,8 +29,8 @@ export type EventEntry = {
     title: string
     subtitle: string
     date: string
-    times: string[]
-    location: EntryFieldTypes.Location,
+    times?: string[],
+    location: EntryFields.Location,
     locationName: string
     registerLink: string
     description: string
@@ -38,7 +38,6 @@ export type EventEntry = {
     slug: string
     image: Asset,
     gpxFile?: Asset,
-    times?: string[],
   }
 }
 
