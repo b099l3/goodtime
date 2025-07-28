@@ -28,6 +28,9 @@ import MobileMenu from "./mobile-menu";
             <Link href="/#events" className="text-sm font-semibold transition-colors hover:text-primary">
               EVENTS
             </Link>
+            <Link href="/#faq" className="text-sm font-semibold transition-colors hover:text-primary">
+              FAQ
+            </Link>
             <Link href="/#contact" className="text-sm font-semibold transition-colors hover:text-primary">
               CONTACT
             </Link>

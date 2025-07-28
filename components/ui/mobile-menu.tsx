@@ -41,6 +41,13 @@ export default function MobileMenu() {
               EVENTS
             </Link>
             <Link
+              href="/#faq"
+              className="text-3xl font-semibold transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              FAQ
+            </Link>
+            <Link
               href="/#contact"
               className="text-3xl font-semibold transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}

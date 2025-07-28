@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import EventCard from "@/components/ui/cards/event-card"
 import RunCard from "@/components/ui/cards/run-card"
 import Footer from "@/components/ui/footer"
+import FAQ from "@/components/ui/faq"
 import Header from "@/components/ui/header"
 import { getRegularRuns, getUpcomingEvents } from "@/lib/contentful"
 import Image from "next/image"
@@ -155,6 +156,9 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <FAQ />
       </main>
 
       {/* Footer */}
