@@ -2,12 +2,11 @@ import AddToCalendar from "@/components/add-to-calendar"
 import GpxMapWrapper from "@/components/gpx-map-wrapper"
 import { Button } from "@/components/ui/button"
 import Header from "@/components/ui/header"
-import { ContentfulImage, getAllEvents, getEventBySlug } from "@/lib/contentful"
+import { getAllEvents, getEventBySlug, getRegularRuns } from "@/lib/contentful"
 import { formatDate } from "@/lib/utils"
 import type { Asset } from "contentful"
-import { Calendar, MapPin } from "lucide-react"
+import { Calendar, Clock, MapPin } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 import { notFound } from "next/navigation"
 
 export const revalidate = 3600 // Revalidate every hour
@@ -15,8 +14,9 @@ export const revalidate = 3600 // Revalidate every hour
 // Generate static params for all events
 export async function generateStaticParams() {
   const events = await getAllEvents()
+  const runs = await getRegularRuns()
 
-  return events.map((event) => ({
+  return [...events, ...runs].map((event) => ({
     slug: event.fields.slug,
   }))
 }
@@ -58,7 +58,7 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
             {event.fields.image && (
               <div className="mb-4 rounded-md overflow-hidden">
                 <Image
-                  src={`https:${(event.fields.image as unknown as ContentfulImage).fields?.file?.url}`}
+                  src={`https:${event.fields.image?.fields?.file?.url}`}
                   alt={event.fields.title || "Event Image"}
                   width={800}
                   height={500}
@@ -69,14 +69,33 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
             <div className="flex flex-wrap gap-4 text-primary/90 py-6">
             <div className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
-              <span className="text-sm">{formatDate(event.fields.date)}</span>
+              {event.fields.eventType === "Regular Run" ? (
+                event.fields.times?.map((time, index) => (
+                  <span key={index} className="text-sm">{time}</span>
+                ))
+              ) : (
+                <span className="text-sm">{formatDate(event.fields.date)}</span>
+              )}
             </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="h-5 w-5" />
-              <span>{event.fields.locationName}</span>
-            </div>
+            {event.fields.times && (
+              <div className="flex items-center gap-2">
+                <Clock className="h-5 w-5" />
+                <span className="text-sm">{event.fields.times.join(', ')}</span>
+              </div>
+            )}
+            <a target="_blank"  href={event.fields.location ? `https://www.google.com/maps/search/?api=1&query=${event.fields.location.lat},${event.fields.location.lon}` : '#'}>
+              <div className="flex items-center gap-2">
+                <MapPin className="h-5 w-5" />
+                <span>{event.fields.locationName}</span>
+              </div>
+            </a>
           </div>
             <h2 className="text-xl font-semibold mb-2">Event Details</h2>
+            {event.fields.gpxFile && (
+              <div className="mb-10">
+                <GpxMapWrapper gpxUrl={`https:${(event.fields.gpxFile as Asset).fields?.file?.url ?? ''}`} />
+              </div>
+            )}
             <div className="prose max-w-none">
               <p>{event.fields.description}</p>
             </div>
@@ -85,17 +104,13 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
           <div className="flex flex-col sm:flex-row gap-4 p-12">
             {event.fields.registerLink && (
               <Button size="lg" className="flex-3" asChild>
-                <Link href={event.fields.registerLink}>Register for this Event</Link>
+                <a target="_blank" href={event.fields.registerLink}>Register for this Event</a>
               </Button>
             )}
-            <AddToCalendar event={calendarEvent} />
+            {event.fields.eventType != "Regular Run" && (
+              <AddToCalendar event={calendarEvent} />
+            )}
           </div>
-
-          {event.fields.gpxFile && (
-            <div className="my-8">
-              <GpxMapWrapper gpxUrl={`https:${(event.fields.gpxFile as Asset).fields?.file?.url ?? ''}`} />
-            </div>
-          )}
         </div>
       </div>
     </div>

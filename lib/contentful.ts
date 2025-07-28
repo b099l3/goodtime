@@ -1,4 +1,4 @@
-import { Asset, createClient, EntryFieldTypes } from "contentful";
+import { Asset, createClient, EntryFields } from "contentful";
 
 export interface ContentfulImage {
   fields: {
@@ -20,14 +20,16 @@ export type EventEntry = {
   }
   fields: {
     title: string
+    subtitle: string
     date: string
-    location: EntryFieldTypes.Location,
+    times?: string[],
+    location: EntryFields.Location,
     locationName: string
     registerLink: string
     description: string
     eventType: string
     slug: string
-    image: Asset,
+    image: EntryFields.AssetLink,
     gpxFile?: Asset,
   }
 }
@@ -44,7 +46,7 @@ if (!CONTENTFUL_SPACE_ID) {
   throw new Error("CONTENTFUL_SPACE_ID environment variable must be defined")
 }
 
-const isPreview = VERCEL_ENV === "preview"
+const isPreview = VERCEL_ENV === "preview" || "dev"
 const accessToken = isPreview
   ? CONTENTFUL_PREVIEW_ACCESS_TOKEN
   : CONTENTFUL_ACCESS_TOKEN
@@ -70,6 +72,7 @@ export async function getUpcomingEvents(limit = 6): Promise<EventEntry[]> {
       limit,
       // Only fetch events that are today or in the future
       "fields.date[gte]": new Date().toISOString().split("T")[0],
+      "fields.eventType[ne]": "Regular Run", // Exclude regular runs
       include: 3,
     })
 
@@ -87,6 +90,7 @@ export async function getAllEvents() {
       content_type: "eventEntry", // Use your actual content type ID here
       order: ["fields.date"], // Correct syntax for ordering
       limit: 100,
+      "fields.eventType[ne]": "Regular Run", // Exclude regular runs
       include: 3,
     })
 
@@ -111,12 +115,31 @@ export async function getAllEventsThisYear() {
       include: 3,
       "fields.date[gte]": todayISOString, // Only events from today onwards
       "fields.date[lte]": yearEnd, // Only events before the end of this year
+      "fields.eventType[ne]": "Regular Run", // Exclude regular runs
     });
 
     return response.items as unknown as EventEntry[] || []
   } catch (error) {
     console.error("Error fetching events from Contentful:", error)
     return [];
+  }
+}
+
+// Fetch regular run events from Contentful
+export async function getRegularRuns(): Promise<EventEntry[]> {
+  try {
+    const response = await contentfulClient.getEntries({
+      content_type: "eventEntry",
+      order: ["fields.date"],
+      "fields.eventType": "Regular Run",
+      limit: 10,
+      include: 3,
+    })
+
+    return response.items as unknown as EventEntry[]
+  } catch (error) {
+    console.error("Error fetching regular runs from Contentful:", error)
+    return []
   }
 }
 
