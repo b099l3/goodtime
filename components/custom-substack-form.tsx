@@ -1,6 +1,5 @@
-// components/CustomSubstackForm.tsx
 export default function CustomSubstackForm() {
-  const SUBSTACK_URL = 'https://goodtimerunningclub.substack.com';
+  const SUBSTACK_URL = "https://goodtimerunningclub.substack.com";
 
   return (
     <div className="md:w-max lg:w-1/3 p-6 rounded-lg bg-white shadow-md">
@@ -10,7 +9,7 @@ export default function CustomSubstackForm() {
       <form
         action={`${SUBSTACK_URL}/subscribe`}
         method="GET"
-        target="_blank" 
+        target="_blank"
         className="flex flex-col space-y-6"
       >
         <input
@@ -28,7 +27,8 @@ export default function CustomSubstackForm() {
           Subscribe
         </button>
         <p className="text-sm text-gray-500">
-          You’ll be redirected to Substack to confirm. <br/> We’ll never spam you.
+          You’ll be redirected to Substack to confirm. <br /> We’ll never spam
+          you.
         </p>
       </form>
     </div>
