@@ -94,19 +94,52 @@ export default async function Home() {
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-              {runs.map((run, idx) => (
-                <RunCard
-                  key={idx}
-                  image={run.fields.image ? `https:${(run.fields.image as unknown as ContentfulImage).fields.file.url}` : ''}
-                  title={run.fields.title}
-                  subtitle={run.fields.subtitle}
-                  desc={run.fields.description}
-                  locationName={run.fields.locationName}
-                  locationUrl={run.fields.location ? `https://www.google.com/maps/search/?api=1&query=${(run.fields.location as unknown as ContentfulLocation).fields.lat},${(run.fields.location as unknown as ContentfulLocation).fields.lon}` : '#'}
-                  times={run.fields.times}
-                  slug={run.fields.slug}
-                />
-              ))}
+              <RunCard
+                image="/Monday.jpeg?height=400&width=600"
+                title="Monday pizza run"
+                subtitle="5km run with pizza"
+                desc="A relaxed 5km run trying to shake off that Monday feeling followed by a slice of half price pizza with friends."
+                locationName="Civerinos Portobello"
+                locationUrl="https://maps.app.goo.gl/ru6n6nyCLRkzNjir9"
+                times={[
+                  'Mondays, 6:30 PM',
+                ]}
+              />
+              <RunCard
+                image="/Thursday.jpeg?height=400&width=600"
+                title="Thursday social run"
+                subtitle="Trail or road? We have both!"
+                desc="We have two options for you. A 5km trail run around Holyrood or road run around Leith. Both runs start and finish at the pub, We usually head in for some food/drink and chat afterwards."
+                locationName="Old Easyway Tap"
+                locationUrl="https://maps.app.goo.gl/bBfy9HSHPaTRMQcD8"
+                times={[
+                  'Trail - Thursdays, 6:15 PM',
+                  'Road - Thursdays, 6:30 PM',
+                ]}
+              />
+              <RunCard
+                image="/Traade.jpeg?height=400&width=600"
+                title="Sunday 5km run"
+                subtitle="Coffee, Chat & Cinnamon Bun!"
+                desc="8am every Sunday we host a 5km starting and finishing at Traade Space on Portobello High Street. Coffee, pastries, and great company."
+                locationName="Traade"
+                locationUrl="https://maps.app.goo.gl/qjkYhxWiHNybDUis8"
+                times={[
+                  'Sundays, 8:00 AM',
+                ]}
+              />
+              <RunCard
+                image="/EndOfTheMonth.jpeg?height=400&width=600"
+                title="End of the Month Run"
+                subtitle="The 5 km where it all started"
+                desc="On the last Friday of the month, we meet at the Portobello Tap for a 5km run.
+                Hang out afterwards for chat and burger. This is the run that started the club and is dear to our hearts."
+                locationName="Portobello Tap"
+                locationUrl="https://maps.app.goo.gl/5zKCeTPMCoBGmS6o7"
+                times={[
+                  'Last Friday of the month, 6:30 PM',
+                ]}
+              />
             </div>
           </div>
         </section>
