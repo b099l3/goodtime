@@ -46,7 +46,9 @@ if (!CONTENTFUL_SPACE_ID) {
   throw new Error("CONTENTFUL_SPACE_ID environment variable must be defined")
 }
 
-const isPreview = VERCEL_ENV === "preview"
+// Treat VERCEL_ENV="development" the same as "preview" so we use the preview
+// API when running locally or with `vercel dev`.
+const isPreview = VERCEL_ENV === "preview" || VERCEL_ENV === "development"
 const accessToken = isPreview
   ? CONTENTFUL_PREVIEW_ACCESS_TOKEN
   : CONTENTFUL_ACCESS_TOKEN
