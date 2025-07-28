@@ -102,8 +102,8 @@ export default async function Home() {
                   subtitle={run.fields.subtitle}
                   desc={run.fields.description}
                   locationName={run.fields.locationName}
-                  locationUrl={run.fields.location ? `https://www.google.com/maps/search/?api=1&query=${(run.fields.location as unknown as ContentfulLocation).fields.lat},${(run.fields.location as unknown as ContentfulLocation).fields.lon}` : '#'}
-                  times={run.fields.times}
+                  locationUrl={run.fields.location ? `https://www.google.com/maps/search/?api=1&query=${run.fields.location.lat},${run.fields.location.lon}` : '#'}
+                  times={run.fields.times ?? [run.fields.date]}
                   slug={run.fields.slug}
                 />
               ))}

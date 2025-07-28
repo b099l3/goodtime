@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button"
 import Header from "@/components/ui/header"
 import { ContentfulImage, getAllEvents, getEventBySlug, getRegularRuns } from "@/lib/contentful"
 import { formatDate } from "@/lib/utils"
-import { Asset } from "contentful"
-import { Calendar, MapPin } from "lucide-react"
+import type { Asset } from "contentful"
+import { Calendar, MapPin, Clock } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -78,6 +78,12 @@ export default async function EventPage(props: { params: Promise<{ slug: string 
                 <span className="text-sm">{formatDate(event.fields.date)}</span>
               )}
             </div>
+            {event.fields.times && (
+              <div className="flex items-center gap-2">
+                <Clock className="h-5 w-5" />
+                <span className="text-sm">{event.fields.times.join(', ')}</span>
+              </div>
+            )}
             <div className="flex items-center gap-2">
               <MapPin className="h-5 w-5" />
               <span>{event.fields.locationName}</span>
