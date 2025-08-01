@@ -1,6 +1,6 @@
-import Link from "next/link";
- 
- export default function Footer() {
+import Link from "next/link"
+
+export default function Footer() {
   return (
     <footer id="contact" className="border-t px-2 bg-muted/50">
       <div className="container pb-12 p-6">
@@ -19,5 +19,6 @@ import Link from "next/link";
           </Link>
         </div>
       </div>
-    </footer> 
-  )};
+    </footer>
+  )
+}
